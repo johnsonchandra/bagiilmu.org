@@ -8,7 +8,7 @@ export const App = React.createClass({
   },
   render() {
     return <div>
-      <AppNavigation />
+      <AppNavigation/>
       <Grid>
         { this.props.children }
       </Grid>
