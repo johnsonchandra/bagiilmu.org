@@ -21,8 +21,6 @@ users.forEach(({ email, password, profile, roles }) => {
     const userId = Accounts.createUser({ email, password, profile });
     Roles.addUsersToRoles(userId, roles, Roles.GLOBAL_GROUP);
 
-    // Meteor.call('Member.create', userId);
-
     Member.insert({
       _id: userId,
       fullname: profile.fullname,
