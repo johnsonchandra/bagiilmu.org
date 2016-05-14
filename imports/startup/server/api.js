@@ -3,3 +3,5 @@ import '../../api/documents/server/publications.js';
 
 import '../../api/member/server/member_methods.js';
 import '../../api/member/server/member_publications.js';
+
+import '../../api/blog/server/blog_publications.js';

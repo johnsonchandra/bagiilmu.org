@@ -13,6 +13,8 @@ import { Signup } from '../../ui/pages/signup';
 
 import { Member } from '../../ui/pages/member';
 
+import { Blogs } from '../../ui/pages/blogs';
+
 const requireAuth = (nextState, replace) => {
   if (!Meteor.loggingIn() && !Meteor.userId()) {
     replace({
@@ -35,6 +37,8 @@ Meteor.startup(() => {
         
         <Route name="member" path="/member/:memberId" component={ Member } onEnter={ requireAuth }/>
         
+        <Route name="blogs" path="/blogs" component={ Blogs } />
+                
         <Route path="*" component={ NotFound } />
       </Route>
     </Router>,
