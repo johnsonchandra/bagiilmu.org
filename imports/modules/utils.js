@@ -1,1 +1,4 @@
-export const toggleNav = () => $('.navbar-toggle').click();
+export const toggleNav = () => {
+	if($('.navbar-toggle.collapsed').length == 0)
+		$('.navbar-toggle').click();
+}
