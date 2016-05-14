@@ -9,22 +9,22 @@ export const CommonNavigation = () => (
 	      </IndexLinkContainer>
 
 			<LinkContainer to="/candidate">
-				<NavItem eventKey={ 2 } href="/documents">Candidate List</NavItem>
+				<NavItem eventKey={ 2 } href="/candidate">Candidate List</NavItem>
 			</LinkContainer>
 
-			<LinkContainer to="/how/you/help">
+			<LinkContainer to="/documents">
 				<NavItem eventKey={ 3 } href="/documents">How You Can Help</NavItem>
 			</LinkContainer>
 
-			<LinkContainer to="/how/we/work">
+			<LinkContainer to="/documents">
 				<NavItem eventKey={ 4 } href="/documents">How We Work</NavItem>
 			</LinkContainer>
 
-			<LinkContainer to="/blog">
+			<LinkContainer to="/documents">
 				<NavItem eventKey={ 5 } href="/documents">Blog</NavItem>
 			</LinkContainer>
 
-			<LinkContainer to="/about">
+			<LinkContainer to="/documents">
 				<NavItem eventKey={ 6 } href="/documents">About Us</NavItem>
 			</LinkContainer>
 		</Nav>

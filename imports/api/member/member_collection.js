@@ -3,7 +3,7 @@ import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { Factory } from 'meteor/dburles:factory';
 
-export const Member = new Mongo.Collection('Member');
+export const Member = new Mongo.Collection('member');
 
 Member.schema = new SimpleSchema({
 	fullname: {

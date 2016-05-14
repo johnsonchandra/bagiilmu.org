@@ -3,6 +3,7 @@ import { Roles } from 'meteor/alanning:roles';
 import { Accounts } from 'meteor/accounts-base';
 
 import { Member } from '../../api/member/member_collection.js';
+import { Blog } from '../../api/blog/blog_collection.js';
 
 const users = [{
   email: 'johnson.chandra@gmail.com',
@@ -28,5 +29,24 @@ users.forEach(({ email, password, profile, roles }) => {
       bio: 'Catalyst'
     });
 
+  }
+});
+
+const blogs = [{
+  title: 'Bagaimana kamu bisa membantu',
+  article: 'ini isinya'
+},{
+  title: 'Bagaimana cara kami bekerja',
+  article: 'ini deskripsi cara kami bekerja'
+}];
+
+blogs.forEach(({ title, article }) => {
+  const blogExists = Blog.findOne({ 'title': title });
+
+  if (!blogExists) {
+    Blog.insert({
+      title: title,
+      article: article
+    });
   }
 });

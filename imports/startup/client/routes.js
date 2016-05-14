@@ -11,7 +11,7 @@ import { RecoverPassword } from '../../ui/pages/recover-password';
 import { ResetPassword } from '../../ui/pages/reset-password';
 import { Signup } from '../../ui/pages/signup';
 
-import { Profile } from '../../ui/pages/profile';
+import { Member } from '../../ui/pages/member';
 
 const requireAuth = (nextState, replace) => {
   if (!Meteor.loggingIn() && !Meteor.userId()) {
@@ -33,7 +33,7 @@ Meteor.startup(() => {
         <Route name="reset-password" path="/reset-password/:token" component={ ResetPassword } />
         <Route name="signup" path="/signup" component={ Signup } />
         
-        <Route name="profile" path="/profile/:profileId" component={ Profile } onEnter={ requireAuth }/>
+        <Route name="member" path="/member/:memberId" component={ Member } onEnter={ requireAuth }/>
         
         <Route path="*" component={ NotFound } />
       </Route>

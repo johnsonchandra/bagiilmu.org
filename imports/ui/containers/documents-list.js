@@ -5,6 +5,8 @@ import { Loading } from '../components/loading.js';
 import { Meteor } from 'meteor/meteor';
 
 const composer = (params, onData) => {
+	console.log('params', params);
+	console.log('params', params.lokasi);
   const subscription = Meteor.subscribe('documents');
   if (subscription.ready()) {
     const documents = Documents.find().fetch();
