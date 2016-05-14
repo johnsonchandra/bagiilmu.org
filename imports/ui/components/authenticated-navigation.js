@@ -18,20 +18,29 @@ const userName = () => {
   return user && user.profile ? user.profile.fullname : '';
 };
 
+
+const profileLink = () => {
+  const user = Meteor.user();
+  return user ? '/profile/'+user._id : '';
+};
+
 export const AuthenticatedNavigation = () => (
-  <div>
-    <Nav onClick={ toggleNav } >
+  <div  onClick={ toggleNav }>
+    <Nav>
+
       <IndexLinkContainer to="/">
         <NavItem eventKey={ 1 } href="/">Home</NavItem>
       </IndexLinkContainer>
+
       <LinkContainer to="/documents">
         <NavItem eventKey={ 2 } href="/documents">Documents</NavItem>
       </LinkContainer>
+
     </Nav>
     <Nav pullRight>
-      <NavDropdown eventKey={ 3 } title={ userName() } id="basic-nav-dropdown">
-        <MenuItem eventKey={ 3.1 } onClick={ handleLogout }>Logout</MenuItem>
-      </NavDropdown>
+      <LinkContainer to={ profileLink() }>
+        <NavItem eventKey={ 4 } href={ profileLink() }>{ userName() }</NavItem>
+      </LinkContainer>
     </Nav>
   </div>
 );
