@@ -3,9 +3,9 @@ import { Jumbotron } from 'react-bootstrap';
 
 export const Index = () => (
   <Jumbotron className="text-center">
-    <h2>Base</h2>
-    <p>A starting point for Meteor applications.</p>
-    <p><a className="btn btn-success" href="https://themeteorchef.com/base" role="button">Read the Documentation</a></p>
-    <p style={ { fontSize: '16px', color: '#aaa' } }>Currently at v4.1.0</p>
+    <h2>bagiilmu.org</h2>
+    <p>Education for Everyone</p>
+    <p><a className="btn btn-success" href="/blog" role="button">Read the Blog</a></p>
+    <p style={ { fontSize: '16px', color: '#aaa' } }>Currently at Alpha.20160514</p>
   </Jumbotron>
 );

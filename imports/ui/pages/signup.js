@@ -17,30 +17,15 @@ export class Signup extends React.Component {
       <Col xs={ 12 } sm={ 6 } md={ 4 }>
         <h4 className="page-header">Sign Up</h4>
         <form ref="signup" className="signup" onSubmit={ this.handleSubmit }>
-          <Row>
-            <Col xs={ 6 } sm={ 6 }>
-              <FormGroup>
-                <ControlLabel>First Name</ControlLabel>
-                <FormControl
-                  type="text"
-                  ref="firstName"
-                  name="firstName"
-                  placeholder="First Name"
-                />
-              </FormGroup>
-            </Col>
-            <Col xs={ 6 } sm={ 6 }>
-              <FormGroup>
-                <ControlLabel>Last Name</ControlLabel>
-                <FormControl
-                  type="text"
-                  ref="lastName"
-                  name="lastName"
-                  placeholder="Last Name"
-                />
-              </FormGroup>
-            </Col>
-          </Row>
+          <FormGroup>
+            <ControlLabel>Full Name</ControlLabel>
+            <FormControl
+              type="text"
+              ref="fullName"
+              name="fullName"
+              placeholder="Full Name"
+            />
+          </FormGroup>
           <FormGroup>
             <ControlLabel>Email Address</ControlLabel>
             <FormControl

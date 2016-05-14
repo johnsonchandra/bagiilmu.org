@@ -14,8 +14,9 @@ describe('Sign Up', function () {
 
   it('should create a new user and login with redirect to index @watch', function () {
     browser.url('http://localhost:3000/signup')
-           .setValue('[name="firstName"]', 'Carl')
-           .setValue('[name="lastName"]', 'Winslow')
+           // .setValue('[name="firstName"]', 'Carl')
+           // .setValue('[name="lastName"]', 'Winslow')
+           .setValue('[name="fullName"]', 'Carl Winslow')
            .setValue('[name="emailAddress"]', 'carl.winslow@abc.com')
            .setValue('[name="password"]', 'bigguy1989')
            .submitForm('form');
