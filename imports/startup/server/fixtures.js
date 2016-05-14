@@ -2,13 +2,15 @@ import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
 import { Accounts } from 'meteor/accounts-base';
 
+import { Member } from '../../api/member/member_collection.js';
+
 const users = [{
-  email: 'admin@admin.com',
+  email: 'johnson.chandra@gmail.com',
   password: 'password',
   profile: {
-    fullname: 'akar admin',
+    fullname: 'Johnson Chandra',
   },
-  roles: ['admin'],
+  roles: ['akar'],
 }];
 
 users.forEach(({ email, password, profile, roles }) => {
@@ -16,6 +18,15 @@ users.forEach(({ email, password, profile, roles }) => {
 
   if (!userExists) {
     const userId = Accounts.createUser({ email, password, profile });
-    Roles.addUsersToRoles(userId, roles);
+    Roles.addUsersToRoles(userId, roles, Roles.GLOBAL_GROUP);
+
+    // Meteor.call('Member.create', userId);
+
+    Member.insert({
+      _id: userId,
+      fullname: profile.fullname,
+      bio: 'Catalyst'
+    });
+
   }
 });

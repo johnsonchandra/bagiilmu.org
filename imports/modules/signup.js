@@ -22,9 +22,18 @@ const signUp = () => {
     if (error) {
       Bert.alert(error.reason, 'danger');
     } else {
-      browserHistory.push('/');
-      Bert.alert('Welcome!', 'success');
-    }
+      Meteor.call('Member.create', {userId:Meteor.userId()}, function(error,result){
+        if(error){
+          Meteor.logout();
+          Bert.alert(error.message,'danger');
+          //FIXME seharusnya notify admin untuk mengecek kesalahan
+        }else{
+          console.log('result', result);
+          browserHistory.push('/');
+          Bert.alert('Welcome!', 'success');
+        }
+      });
+    };
   });
 };
 
