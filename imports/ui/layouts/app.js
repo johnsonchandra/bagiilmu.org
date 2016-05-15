@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid } from 'react-bootstrap';
 import AppNavigation from '../containers/app-navigation';
-import { Footer } from '../components/footer';
+// import { Footer } from '../components/footer';
 
 export const App = React.createClass({
   propTypes: {

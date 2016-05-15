@@ -31,18 +31,21 @@ users.forEach(({ email, password, profile, roles }) => {
 });
 
 const blogs = [{
-  title: 'Bagaimana kamu bisa membantu',
-  article: 'ini isinya'
-},{
+  _id: 'how_we_work',
   title: 'Bagaimana cara kami bekerja',
-  article: '<b>ini deskripsi cara kami bekerja</b>'
+  article: 'ini deskripsi cara kami bekerja'
+},{
+  _id: 'how_you_can_help',
+  title: 'Bagaimana kamu bisa membantu',
+  article: 'ini deskripsi bagaimana kamu bisa membantu'
 }];
 
-blogs.forEach(({ title, article }) => {
-  const blogExists = Blog.findOne({ 'title': title });
+blogs.forEach(({ _id, title, article }) => {
+  const blogExists = Blog.findOne(_id);
 
   if (!blogExists) {
     Blog.insert({
+      _id: _id,
       title: title,
       article: article
     });
