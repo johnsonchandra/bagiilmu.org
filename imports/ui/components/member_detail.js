@@ -20,3 +20,7 @@ export const MemberDetail = ({ member }) => {
 		);
 
 }
+
+MemberDetail.propTypes = {
+  member: React.PropTypes.object.isRequired,
+};

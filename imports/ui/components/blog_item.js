@@ -13,3 +13,7 @@ export const BlogItem = ({ blogItem }) => (
     </Row>
   </ListGroupItem>
 );
+
+BlogItem.propTypes = {
+  blogItem: React.PropTypes.object.isRequired,
+};

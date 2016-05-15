@@ -10,7 +10,7 @@ export class AppNavigation extends React.Component {
   }
 
   render() {
-    return <Navbar>
+    return <Navbar inverse>
       <Navbar.Header>
         <Navbar.Brand>
           <Link to="/">bagiilmu.org</Link>

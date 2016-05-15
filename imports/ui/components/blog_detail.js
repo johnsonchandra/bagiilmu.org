@@ -19,3 +19,7 @@ export const BlogDetail = ({ blog }) => {
 		);
 
 }
+
+BlogDetail.propTypes = {
+  blog: React.PropTypes.object.isRequired,
+};
