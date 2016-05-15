@@ -35,7 +35,7 @@ const blogs = [{
   article: 'ini isinya'
 },{
   title: 'Bagaimana cara kami bekerja',
-  article: 'ini deskripsi cara kami bekerja'
+  article: '<b>ini deskripsi cara kami bekerja</b>'
 }];
 
 blogs.forEach(({ title, article }) => {

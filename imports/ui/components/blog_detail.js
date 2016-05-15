@@ -1,16 +1,27 @@
 import React from 'react';
 // import { MemberMenu } from './member_menu.js';
 import { NotFound } from '../pages/not-found';
-import { Jumbotron } from 'react-bootstrap';
+import { Row, Col, Jumbotron } from 'react-bootstrap';
 
 export const BlogDetail = ({ blog }) => {
 	if(blog)
 		return(
 			<div>
-				<Jumbotron className="text-center">
-					<h2>{ blog.title }</h2>
-					<p>{ blog.article }</p>
-				</Jumbotron>
+				<Row>
+					<Col xs={ 12 }>
+						<h2>{ blog.title }</h2>
+						<hr/>
+						<p>Posted on August 24, 2013 at 9:00 PM</p>
+						<hr/>
+						<div align="center">
+							<img width={900} height={300} alt="article" src="/images/900x300.png" />
+						</div>
+						<hr/>
+						<p>
+							{ blog.article }
+						</p>
+					</Col>
+				</Row>
 			</div>
 		);
 	else
@@ -23,3 +34,8 @@ export const BlogDetail = ({ blog }) => {
 BlogDetail.propTypes = {
   blog: React.PropTypes.object.isRequired,
 };
+
+				// <Jumbotron className="text-center">
+				// 	<h2>{ blog.title }</h2>
+				// 	<p>{ blog.article }</p>
+				// </Jumbotron>
