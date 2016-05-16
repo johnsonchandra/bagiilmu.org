@@ -12,3 +12,5 @@ export const resetInputValue = (component) => {
 	ReactDOM.findDOMNode(component).blur()
 	ReactDOM.findDOMNode(component).value= '';
 };
+
+export const goSignup = () => browserHistory.push('/signup');

@@ -1,9 +1,9 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
+import { goSignup } from '../../modules/utils.js';
 
 import { Row, Col, Well, Jumbotron, Carousel, Button } from 'react-bootstrap';
 
-const goSignup = () => browserHistory.push('/signup');
 
 export const Index = () => (
 	<div>
