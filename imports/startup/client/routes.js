@@ -11,6 +11,7 @@ import { RecoverPassword } from '../../ui/pages/recover-password';
 import { ResetPassword } from '../../ui/pages/reset-password';
 import { Signup } from '../../ui/pages/signup';
 
+import { Members } from '../../ui/pages/members';
 import { Member } from '../../ui/pages/member';
 
 import { Blogs } from '../../ui/pages/blogs';
@@ -37,7 +38,8 @@ Meteor.startup(() => {
         <Route name="reset-password" path="/reset-password/:token" component={ ResetPassword } />
         <Route name="signup" path="/signup" component={ Signup } />
         
-        <Route name="member" path="/member/:memberId" component={ Member } onEnter={ requireAuth }/>
+        <Route name="members" path="/members" component={ Members } onEnter={ requireAuth }/>
+        <Route name="member" path="/member/detail/:memberId" component={ Member } onEnter={ requireAuth }/>
         
         <Route name="blogs" path="/blogs" component={ Blogs } />
         <Route name="blog" path="/blog/detail/:blogId" component={ Blog } />

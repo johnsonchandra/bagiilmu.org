@@ -1,7 +1,7 @@
 import React from 'react';
 // import { MemberMenu } from './member_menu.js';
 import { NotFound } from '../pages/not-found';
-import { Row, Col, Jumbotron } from 'react-bootstrap';
+import { Row, Col, Image, Jumbotron } from 'react-bootstrap';
 
 export const BlogDetail = ({ blog }) => {
 	if(blog)
@@ -13,9 +13,7 @@ export const BlogDetail = ({ blog }) => {
 						<hr/>
 						<p>Posted on August 24, 2013 at 9:00 PM</p>
 						<hr/>
-						<div align="center">
-							<img width={900} height={300} alt="article" src="/images/900x300.png" />
-						</div>
+						<Image alt="article" src="/images/900x300.png" responsive />
 						<hr/>
 						<p>
 							{ blog.article }

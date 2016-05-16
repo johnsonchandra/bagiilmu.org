@@ -1,3 +1,4 @@
+import ReactDOM from 'react-dom';
 import { browserHistory } from 'react-router';
 
 export const toggleNav = () => {
@@ -6,3 +7,8 @@ export const toggleNav = () => {
 };
 
 export const handleLogout = () => Meteor.logout(() => browserHistory.push('/'));
+
+export const resetInputValue = (component) => {
+	ReactDOM.findDOMNode(component).blur()
+	ReactDOM.findDOMNode(component).value= '';
+};

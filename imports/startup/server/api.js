@@ -6,3 +6,6 @@ import '../../api/member/server/member_publications.js';
 
 import '../../api/blog/server/blog_publications.js';
 import '../../api/blog/blog_methods.js';
+
+import '../../api/invitation/server/invitation_publications.js';
+import '../../api/invitation/invitation_methods.js';

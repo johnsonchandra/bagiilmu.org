@@ -16,7 +16,7 @@ const userName = () => {
 
 const memberLink = () => {
   const user = Meteor.user();
-  return user ? '/member/'+user._id : '';
+  return user ? '/member/detail/'+user._id : '';
 };
 
 export const AuthenticatedNavigation = () => (

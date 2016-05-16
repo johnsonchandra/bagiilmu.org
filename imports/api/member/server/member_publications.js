@@ -7,3 +7,8 @@ Meteor.publish('member', (memberId) => {
 	
 	return Member.find({_id:memberId});
 });
+
+Meteor.publish('members', () => {	
+	//FIXME bikin limit buat infinite scrolling
+	return Member.find();
+});

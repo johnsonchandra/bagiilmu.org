@@ -1,4 +1,4 @@
-# bagiilmu.org
+# Responsive FrontEnd for bagiilmu.org
 Education for Everyone
 
 <table>

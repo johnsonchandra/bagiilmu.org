@@ -24,8 +24,12 @@ export const CommonNavigation = () => (
 				<NavItem eventKey={ 5 } href="/blogs">Blog</NavItem>
 			</LinkContainer>
 
-			<LinkContainer to="/documents">
-				<NavItem eventKey={ 6 } href="/documents">About Us</NavItem>
+			<LinkContainer to="/members">
+				<NavItem eventKey={ 6 } href="/members">Members</NavItem>
+			</LinkContainer>
+
+			<LinkContainer to="/about">
+				<NavItem eventKey={ 7 } href="/about">About Us</NavItem>
 			</LinkContainer>
 		</Nav>
 );
