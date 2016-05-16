@@ -15,9 +15,7 @@ export const BlogDetail = ({ blog }) => {
 						<hr/>
 						<Image alt="article" src="/images/900x300.png" responsive />
 						<hr/>
-						<p>
-							{ blog.article }
-						</p>
+						<div dangerouslySetInnerHTML={{__html: blog.article}}/>
 					</Col>
 				</Row>
 			</div>
@@ -37,3 +35,5 @@ BlogDetail.propTypes = {
 				// 	<h2>{ blog.title }</h2>
 				// 	<p>{ blog.article }</p>
 				// </Jumbotron>
+
+				// result.join(" ")

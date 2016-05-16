@@ -33,7 +33,9 @@ users.forEach(({ email, password, profile, roles }) => {
 const blogs = [{
   _id: 'how_we_work',
   title: 'Bagaimana cara kami bekerja',
-  article: 'ini deskripsi cara kami bekerja'
+  article: '<b>ini deskripsi cara kami bekerja</b>
+    <i>coba ah</id>
+  '
 },{
   _id: 'how_you_can_help',
   title: 'Bagaimana kamu bisa membantu',
