@@ -12,7 +12,7 @@ Blog.schema = new SimpleSchema({
 	},
 	article: {
 		type: String,
-		label: 'Blog Article'
+		label: 'Blog Article in JSON.stringify(draft.js)'
 	}
 });
 

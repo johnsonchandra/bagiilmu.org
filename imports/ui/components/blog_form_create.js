@@ -1,23 +1,5 @@
 import React from 'react';
-import { Editor, EditorState, RichUtils, DefaultDraftBlockRenderMap } from 'draft-js';
-
-// const styles = {
-//   root: {
-//     fontFamily: '\'Helvetica\', sans-serif',
-//     padding: 20,
-//     width: 600,
-//   },
-//   editor: {
-//     border: '1px solid #ccc',
-//     cursor: 'text',
-//     minHeight: 80,
-//     padding: 10,
-//   },
-//   button: {
-//     marginTop: 10,
-//     textAlign: 'center',
-//   },
-// };
+import { Editor, EditorState, RichUtils, convertFromRaw, convertToRaw } from 'draft-js';
 
 export class BlogFormCreate extends React.Component {
 
@@ -33,6 +15,24 @@ export class BlogFormCreate extends React.Component {
     this.toggleInlineStyle = (style) => this._toggleInlineStyle(style);
 
     this.logState = () => console.log(this.state.editorState.toJS());
+
+    this.showRaw = () => {
+      const content = this.state.editorState.getCurrentContent();
+      const contentRaw = JSON.stringify(convertToRaw(content)); // to workaround ValidatedMethod in SimpleSchema
+      console.log(contentRaw);
+      
+      const blog = {
+        title: 'coba',
+        article: contentRaw
+      };
+
+      Meteor.call('blog.insert', blog, (error, result)=>{
+        if(error)
+          console.log('error',error.message);
+        else
+          console.log('result',result);
+      });
+    }
   }
 
   _handleKeyCommand(command) {
@@ -104,6 +104,11 @@ export class BlogFormCreate extends React.Component {
           onClick={this.logState}
           type="button"
           value="Log State"
+        />
+        <input
+          onClick={this.showRaw}
+          type="button"
+          value="showRaw"
         />
       </div>
     );
@@ -211,30 +216,5 @@ const InlineStyleControls = (props) => {
     </div>
   );
 };
-
-
-
-
-
-
-
-
-
-      // <div style={styles.root}>
-      //   <div style={styles.editor} onClick={this.focus}>
-      //     <Editor
-      //       editorState={this.state.editorState}
-      //       onChange={this.onChange}
-      //       placeholder="Enter some text..."
-      //       ref="editor"
-      //     />
-      //   </div>
-      //   <input
-      //     onClick={this.logState}
-      //     style={styles.button}
-      //     type="button"
-      //     value="Log State"
-      //   />
-      // </div>
 
 
