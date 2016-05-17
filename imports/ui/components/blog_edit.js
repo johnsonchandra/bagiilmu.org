@@ -1,11 +1,15 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+
 import { Link } from 'react-router';
 import { Row, Col, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
-import { handleBlog } from '../../modules/handleBlog';
+import { blogValidate } from '../../modules/blogModules';
 
-export class BlogForm extends React.Component {
+export class BlogEdit extends React.Component {
   componentDidMount() {
-    handleBlog({ component: this });
+    blogValidate({ component: this });
+    if(this.props.blog)
+      ReactDOM.findDOMNode(this.refs.blogTitle).value = this.props.blog.title;
   }
 
   handleSubmit(event) {
@@ -15,7 +19,6 @@ export class BlogForm extends React.Component {
   render() {
     return <Row>
         <Col xs={ 12 } sm={ 6 } md={ 4 }>
-          <h4 className="page-header">Create new Blog</h4>
           <form ref="blog" className="blog" onSubmit={ this.handleSubmit }>
             <FormGroup>
               <ControlLabel>Blog Title</ControlLabel>
@@ -26,18 +29,14 @@ export class BlogForm extends React.Component {
                 placeholder="type the title of the blog here..."
               />
             </FormGroup>
-            <FormGroup>
-              <ControlLabel>Blog Article</ControlLabel>
-              <FormControl
-                componentClass="textarea"
-                ref="blogArticle"
-                name="blogArticle"
-                placeholder="type your article here..."
-              />
-            </FormGroup>
             <Button type="submit" bsStyle="success">Submit</Button>
           </form>
         </Col>
       </Row>;
   }
 }
+
+
+BlogEdit.propTypes = {
+  blog: React.PropTypes.object
+};

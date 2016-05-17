@@ -9,7 +9,8 @@ let component;
 
 const blog = () => {
   const title = getInputValue(component.refs.blogTitle);
-  const article = getInputValue(component.refs.blogArticle);
+  // const article = getInputValue(component.refs.blogArticle);
+  const article = 'sementara';
 
   Meteor.call('blog.insert', {title:title, article:article}, function(error,result){
     if(error){
@@ -27,23 +28,23 @@ const validate = () => {
       blogTitle: {
         required: true
       },
-      blogArticle: {
-        required: true
-      },
+      // blogArticle: {
+      //   required: true
+      // },
     },
     messages: {
       blogTitle: {
         required: 'Need a title here.',
       },
-      blogArticle: {
-        required: 'Need article here.',
-      },
+      // blogArticle: {
+      //   required: 'Need article here.',
+      // },
     },
     submitHandler() { blog(); },
   });
 };
 
-export const handleBlog = (options) => {
+export const blogValidate = (options) => {
   component = options.component;
   validate();
 };

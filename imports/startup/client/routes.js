@@ -15,9 +15,6 @@ import { Faqs } from '../../ui/pages/faqs';
 import { FaqWork } from '../../ui/pages/faq_work';
 import { FaqHelp } from '../../ui/pages/faq_help';
 
-// import { Candidates } from '../../ui/pages/candidates';
-// import { Candidate } from '../../ui/pages/candidate';
-
 import { Organizations } from '../../ui/pages/organizations';
 import { Organization } from '../../ui/pages/organization';
 
@@ -26,7 +23,7 @@ import { Member } from '../../ui/pages/member';
 
 import { Blogs } from '../../ui/pages/blogs';
 import { Blog } from '../../ui/pages/blog';
-import { BlogCreate } from '../../ui/pages/blog_create';
+import { BlogForm } from '../../ui/pages/blog_form';
 
 import { AboutUs } from '../../ui/pages/about_us';
 
@@ -53,7 +50,6 @@ Meteor.startup(() => {
         <Route name="reset-password" path="/reset-password/:token" component={ ResetPassword } />
         <Route name="signup" path="/signup" component={ Signup } />
         
-        
         <Route name="organization" path="/organizations" component={ Organizations } />
         <Route name="organization.detail" path="/organization/detail/:organizationId" component={ Organization } />
         
@@ -62,8 +58,9 @@ Meteor.startup(() => {
         
         <Route name="blogs" path="/blogs" component={ Blogs } />
         <Route name="blog" path="/blog/detail/:blogId" component={ Blog } />
-        <Route name="blog.create" path="/blog/create" component={ BlogCreate } onEnter={ requireAuth }/>
-
+        <Route name="blog.form" path="/blog/form" component={ BlogForm } onEnter={ requireAuth }/>
+        <Route name="blog.form.edit" path="/blog/form/:blogId" component={ BlogForm } onEnter={ requireAuth }/>
+        
         <Route name="faqs" path="/faqs" component={ Faqs } />
         <Route name="faq.work" path="/faq/work" component={ FaqWork } />
         <Route name="faq.help" path="/faq/help" component={ FaqHelp } />

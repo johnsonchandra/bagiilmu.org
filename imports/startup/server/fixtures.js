@@ -64,24 +64,24 @@ users.forEach(({ username, email, password, profile, bio, roles, group }) => {
   }
 });
 
-const blogs = [{
-  _id: 'blog1',
-  title: 'This is the title of first article',
-  article: '<b>ini artikel pertama lohhhhhh</b><i>coba ah</id>'
-},{
-  _id: 'blog2',
-  title: 'Artikel Kedua',
-  article: 'ini deskripsi lorem ipsum artikel kedua'
-}];
+// const blogs = [{
+//   _id: 'blog1',
+//   title: 'This is the title of first article',
+//   article: ''
+// },{
+//   _id: 'blog2',
+//   title: 'Artikel Kedua',
+//   article: ''
+// }];
 
-blogs.forEach(({ _id, title, article }) => {
-  const blogExists = Blog.findOne(_id);
+// blogs.forEach(({ _id, title, article }) => {
+//   const blogExists = Blog.findOne(_id);
 
-  if (!blogExists) {
-    Blog.insert({
-      _id: _id,
-      title: title,
-      article: article
-    });
-  }
-});
+//   if (!blogExists) {
+//     Blog.insert({
+//       _id: _id,
+//       title: title,
+//       article: article
+//     });
+//   }
+// });

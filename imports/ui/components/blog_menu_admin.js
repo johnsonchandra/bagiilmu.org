@@ -3,6 +3,6 @@ import { Link } from 'react-router';
 
 export const BlogMenuAdmin = () => (
 	<div>
-		<Link to="/blog/create">Create Blog</Link>
+		<Link to="/blog/form">Create Blog</Link>
 	</div>
 );

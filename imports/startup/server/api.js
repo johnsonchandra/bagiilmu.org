@@ -9,3 +9,6 @@ import '../../api/blog/blog_methods.js';
 
 import '../../api/invitation/server/invitation_publications.js';
 import '../../api/invitation/invitation_methods.js';
+
+import '../../api/organization/server/organization_publications.js';
+// import '../../api/organization/invitation_methods.js';
