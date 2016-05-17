@@ -17,6 +17,14 @@ import { Blogs } from '../../ui/pages/blogs';
 import { Blog } from '../../ui/pages/blog';
 import { BlogCreate } from '../../ui/pages/blog_create';
 
+import { DraftPlainText } from '../../ui/pages/draft_plaintext.js';
+import { DraftRich } from '../../ui/pages/draft_rich.js';
+import { DraftLink } from '../../ui/pages/draft_link.js';
+import { DraftEntity } from '../../ui/pages/draft_entity.js';
+import { DraftTweet } from '../../ui/pages/draft_tweet.js';
+import { DraftMedia } from '../../ui/pages/draft_media.js';
+import { DraftColor } from '../../ui/pages/draft_color.js';
+
 const requireAuth = (nextState, replace) => {
   if (!Meteor.loggingIn() && !Meteor.userId()) {
     replace({
@@ -40,9 +48,17 @@ Meteor.startup(() => {
         <Route name="member" path="/member/:memberId" component={ Member } onEnter={ requireAuth }/>
         
         <Route name="blogs" path="/blogs" component={ Blogs } />
-        <Route name="blog" path="/blog/create" component={ BlogCreate } />
+        <Route name="blog.create" path="/blog/create" component={ BlogCreate } />
         
         <Route name="blog" path="/blog/:blogId" component={ Blog } />
+        
+        <Route name="draft.plaintext" path="/draft/plaintext" component={ DraftPlainText } />
+        <Route name="draft.rich" path="/draft/rich" component={ DraftRich } />
+        <Route name="draft.link" path="/draft/link" component={ DraftLink } />
+        <Route name="draft.entity" path="/draft/entity" component={ DraftEntity } />
+        <Route name="draft.tweet" path="/draft/tweet" component={ DraftTweet } />
+        <Route name="draft.media" path="/draft/media" component={ DraftMedia } />
+        <Route name="draft.color" path="/draft/color" component={ DraftColor } />
                 
         <Route path="*" component={ NotFound } />
       </Route>
