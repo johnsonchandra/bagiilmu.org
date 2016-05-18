@@ -13,7 +13,6 @@ Member.schema = new SimpleSchema({
 	nickname: {
 		type: String,
 		label: 'Member NickName',
-		optional: true
 	},
 	dob: {
 		type: Date,
@@ -28,6 +27,13 @@ Member.schema = new SimpleSchema({
 });
 
 Member.attachSchema(Member.schema);
+
+Member.publicFields = {
+  _id 		: 1,
+  fullname 	: 1,
+  nickname 	: 1,
+  bio 	 	: 1,
+};
 
 // jcha: not yet needed
 // Factory.define('member', Member, {

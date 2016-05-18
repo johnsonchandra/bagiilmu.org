@@ -1,39 +1,50 @@
 import React from 'react';
 // import { MemberMenu } from './member_menu.js';
 import { NotFound } from '../pages/not-found';
-import { Row, Col, Image, Jumbotron } from 'react-bootstrap';
+import { Image } from 'react-bootstrap';
+
+import { Link } from 'react-router';
+
+import { 
+  convertFromRaw,
+  Editor,
+  EditorState
+} from 'draft-js';
+
 
 export const BlogDetail = ({ blog }) => {
-	if(blog)
+	if(blog){
+		const rawContent = JSON.parse(blog.article);
+		const blocks = convertFromRaw(rawContent);
+
+		this.state = {
+			editorState: EditorState.createWithContent(blocks),
+		};
+
+		const publishedTimestamp = blog.timestamp.toLocaleDateString();
+
 		return(
 			<div>
-				<Row>
-					<Col xs={ 12 }>
-						<h2>{ blog.title }</h2>
-						<hr/>
-						<p>Posted on August 24, 2013 at 9:00 PM</p>
-						<hr/>
-						<Image alt="article" src="/images/900x300.png" responsive />
-						<hr/>
-						<div dangerouslySetInnerHTML={{__html: blog.article}}/>
-					</Col>
-				</Row>
+				<h2>{ blog.title }</h2>
+				<hr/>
+				<p>
+					Published on { publishedTimestamp } by <Link to={`/member/detail/${blog.userId}`}>{ blog.member().nickname }</Link>
+				</p>
+				<hr/>
+				<Image alt="article" src="/images/900x300.png" responsive />
+				<hr/>
+	          <Editor editorState={this.state.editorState} readOnly={ true }/>
+	          <hr/>
 			</div>
 		);
-	else
+	} else {
 		return(
 			<NotFound />
 		);
-
+	}
 }
 
 BlogDetail.propTypes = {
-  blog: React.PropTypes.object.isRequired,
+  blog: React.PropTypes.object
 };
 
-				// <Jumbotron className="text-center">
-				// 	<h2>{ blog.title }</h2>
-				// 	<p>{ blog.article }</p>
-				// </Jumbotron>
-
-				// result.join(" ")

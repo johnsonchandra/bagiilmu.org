@@ -119,3 +119,60 @@ Impact Report [progress anak-anaknya, 6 bulanan? Kerjasama dengan Change Maker â
 Donation Report [laporan penerimaan dan pengeluaran donasi, mirip Wecare.id, diupdate seminggu sekali at least]
 
 
+
+1. SD umur 7-12 98 persen
+
+2. SMP 13-15 94 persen
+
+3. SMA 16-18 70 persen
+
+4. Setelah SMA 19-24
+- 23 persen masih sekolah
+- 76 persen tidak sekolah lagi (artinya gak lanjutkan sekolah setelah SMA?)
+- sisanya tidak pernah sekolah
+
+data 2014
+
+
+
+import { Blog } from './blog_collection.js';
+import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import { ValidatedMethod } from 'meteor/mdg:validated-method';
+
+export const blogInsert = new ValidatedMethod({
+  name: 'blog.insert',
+  validate: new SimpleSchema({
+    'title': { type: String },
+    'article': { type: String }
+  }).validator(),
+  run(blog) {
+    console.log(blog);
+    return Blog.insert(blog);
+  },
+});
+
+export const blogUpdate = new ValidatedMethod({
+  name: 'blog.update',
+  validate: new SimpleSchema({
+    '_id': { type: String },
+    'blog.title': { type: String, optional: true },
+    'blog.article': { type: Object, optional: true }
+  }).validator(),
+  run({ blog }) {
+    Blog.update(_id, { $set: blog });
+  },
+});
+
+export const blogDelete = new ValidatedMethod({
+  name: 'blog.delete',
+  validate: new SimpleSchema({
+    _id: { type: String },
+  }).validator(),
+  run({ _id }) {
+    Blog.remove(_id);
+  },
+});
+
+
+
+

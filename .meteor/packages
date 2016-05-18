@@ -32,3 +32,5 @@ practicalmeteor:mocha
 xolvio:backdoor
 mdg:validated-method
 dburles:factory
+dburles:collection-helpers
+reywood:publish-composite
