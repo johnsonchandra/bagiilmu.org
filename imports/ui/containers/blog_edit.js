@@ -4,12 +4,20 @@ import { BlogEdit } from '../components/blog_edit.js';
 import { Loading } from '../components/loading.js';
 import { Meteor } from 'meteor/meteor';
 
+import { browserHistory } from 'react-router';
+
 const composer = (params, onData) => {
 	if(params.blogId){
-		const subscription = Meteor.subscribe('blog', params.blogId);
+		console.log('params.blogId', params.blogId);
+
+		const subscription = Meteor.subscribe('blog.edit', params.blogId);
 		if (subscription.ready()) {
 			const blog = Blog.findOne();
-			onData(null,  { blog });
+			if(blog)
+				onData(null,  { blog });
+			else{
+				browserHistory.push('/error');
+			}
 		}
 	}else{
 		onData(null, {});

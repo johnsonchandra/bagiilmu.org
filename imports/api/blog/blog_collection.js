@@ -68,10 +68,15 @@ Blog.publicFields = {
 };
 
 Blog.helpers({
-  member() {
-    return Member.findOne(this.userId);
-  },
-  // editableBy(userId) {
-  //   return this.list().editableBy(userId);
-  // },
+	member() {
+		return Member.findOne(this.userId);
+	},
+	editableBy(userId) {
+		if (this.userId) {
+		   return this.userId === userId;
+		}else{
+			return false;
+		}
+	},
 });
+

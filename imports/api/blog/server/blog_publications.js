@@ -9,15 +9,16 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 // 	return Blog.find();
 // });
 
-// Meteor.publish('blog', (blogId) => {
-// 	console.log('blogId yang server dapet', blogId);
-// 	check(blogId, String);
-	
-// 	return Blog.find({_id:blogId});
-// });
+Meteor.publish('blog.edit', function blogEdit(blogId) {
+  check(blogId, String);
 
+  const blog = Blog.findOne(blogId);
 
-
+  if(blog.editableBy(this.userId))
+    return Blog.find({_id:blogId});
+  
+  return this.ready();
+});
 
 Meteor.publishComposite('blog.active', function blogActive(blogId) {
 	
@@ -36,7 +37,7 @@ Meteor.publishComposite('blog.active', function blogActive(blogId) {
       // We only need the _id field in this query, since it's only
       // used to drive the child queries to get the todos
       const options = {
-			fields: Blog.publicFields,
+        fields: Blog.publicFields,
       };
 
       return Blog.find(query, options);
@@ -70,7 +71,7 @@ Meteor.publishComposite('blogs.active', function blogsActive() {
       // We only need the _id field in this query, since it's only
       // used to drive the child queries to get the todos
       const options = {
-			fields: Blog.publicFields,
+        fields: Blog.publicFields,
       };
 
       return Blog.find(query, options);
