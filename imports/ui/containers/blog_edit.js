@@ -8,8 +8,6 @@ import { browserHistory } from 'react-router';
 
 const composer = (params, onData) => {
 	if(params.blogId){
-		console.log('params.blogId', params.blogId);
-
 		const subscription = Meteor.subscribe('blog.edit', params.blogId);
 		if (subscription.ready()) {
 			const blog = Blog.findOne();

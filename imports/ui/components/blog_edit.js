@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 import { FormGroup, FormControl, Button } from 'react-bootstrap';
 import { blogValidate } from '../../modules/blogModules';
 
-import { Editor, EditorState, RichUtils, convertToRaw } from 'draft-js';
+import { Editor, EditorState, RichUtils, convertToRaw, convertFromRaw } from 'draft-js';
 
 export class BlogEdit extends React.Component {
   constructor(props) {
@@ -20,6 +20,12 @@ export class BlogEdit extends React.Component {
     this.toggleInlineStyle = (style) => this._toggleInlineStyle(style);
 
     this.saveBlog = () => ReactDOM.findDOMNode(this.refs.blog).dispatchEvent(new Event('submit'));
+
+    if(this.props.blog){
+      this.state = {
+        editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(this.props.blog.article))),
+      };
+    };
 
     // this.logState = () => console.log(this.state.editorState.toJS());
 

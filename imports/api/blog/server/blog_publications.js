@@ -14,7 +14,7 @@ Meteor.publish('blog.edit', function blogEdit(blogId) {
 
   const blog = Blog.findOne(blogId);
 
-  if(blog.editableBy(this.userId))
+  if(blog && blog.editableBy(this.userId))
     return Blog.find({_id:blogId});
   
   return this.ready();

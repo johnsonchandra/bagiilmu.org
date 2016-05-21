@@ -17,10 +17,14 @@ export const updateBlog = new ValidatedMethod({
   name: 'blog.update',
   validate: new SimpleSchema({
     _id: { type: String },
-    'blog.title': { type: String, optional: true },
+    'blog.title': { type: String },
+    'blog.article': { type: String },
   }).validator(),
-  run({ _id, update }) {
-    Blog.update(_id, { $set: update });
+  run({ _id, blog }) {
+    console.log('_id di belakang:', _id);
+    console.log('blog di belakang:', blog);
+
+    Blog.update(_id, { $set: blog });
   },
 });
 
