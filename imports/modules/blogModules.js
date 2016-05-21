@@ -11,19 +11,17 @@ let component;
 
 const blog = () => {
   const title = getInputValue(component.refs.blogTitle);
-
   const content = component.state.editorState.getCurrentContent();
   const article = JSON.stringify(convertToRaw(content)); // to workaround ValidatedMethod in SimpleSchema
   
+  const blog = {
+    title: title,
+    article: article,
+    status: component.state.status
+  };
+
   if(component.props.blog && component.props.blog._id){
     //update modus
-    const blog = {
-      title: title,
-      article: article
-    };
-
-    console.log('blog di depan', blog);
-
     Meteor.call('blog.update', {_id:component.props.blog._id, blog: blog}, function(error,result){
       if(error){
         Bert.alert(error.message,'danger');
@@ -33,7 +31,7 @@ const blog = () => {
     });
   }else{
     //insert modus
-    Meteor.call('blog.insert', {title: title, article: article}, function(error,result){
+    Meteor.call('blog.insert', blog, function(error,result){
       if(error){
         Bert.alert(error.message,'danger');
       }else{

@@ -7,6 +7,7 @@ export const insertBlog = new ValidatedMethod({
   validate: new SimpleSchema({
     title: { type: String },
     article: { type: String },
+    status: { type: String },
   }).validator(),
   run(blog) {
     return Blog.insert(blog);
@@ -19,11 +20,9 @@ export const updateBlog = new ValidatedMethod({
     _id: { type: String },
     'blog.title': { type: String },
     'blog.article': { type: String },
+    'blog.status': { type: String },
   }).validator(),
   run({ _id, blog }) {
-    console.log('_id di belakang:', _id);
-    console.log('blog di belakang:', blog);
-
     Blog.update(_id, { $set: blog });
   },
 });

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { Link } from 'react-router';
-import { FormGroup, FormControl, Button } from 'react-bootstrap';
+import { FormGroup, FormControl, ButtonGroup, Button } from 'react-bootstrap';
 import { blogValidate } from '../../modules/blogModules';
 
 import { Editor, EditorState, RichUtils, convertToRaw, convertFromRaw } from 'draft-js';
@@ -10,7 +10,17 @@ import { Editor, EditorState, RichUtils, convertToRaw, convertFromRaw } from 'dr
 export class BlogEdit extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {editorState: EditorState.createEmpty()};
+    if(this.props.blog){
+      this.state = {
+        editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(this.props.blog.article))),
+        status: this.props.blog.status,
+      };
+    }else{
+      this.state = {
+        editorState: EditorState.createEmpty(),
+        status: 'Draft',
+      };
+    };
 
     this.focus = () => this.refs.editor.focus();
     this.onChange = (editorState) => this.setState({editorState});
@@ -21,31 +31,10 @@ export class BlogEdit extends React.Component {
 
     this.saveBlog = () => ReactDOM.findDOMNode(this.refs.blog).dispatchEvent(new Event('submit'));
 
-    if(this.props.blog){
-      this.state = {
-        editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(this.props.blog.article))),
-      };
+    this._onStatusChange = (status) => {
+      this.state.status = status;
+      this.focus();
     };
-
-    // this.logState = () => console.log(this.state.editorState.toJS());
-
-    // this.showRaw = () => {
-    //   const content = this.state.editorState.getCurrentContent();
-    //   const contentRaw = JSON.stringify(convertToRaw(content)); // to workaround ValidatedMethod in SimpleSchema
-    //   console.log(contentRaw);
-      
-    //   const blog = {
-    //     title: title,
-    //     article: contentRaw
-    //   };
-
-    //   Meteor.call('blog.insert', blog, (error, result)=>{
-    //     if(error)
-    //       console.log('error',error.message);
-    //     else
-    //       console.log('result',result);
-    //   });
-    // }
   }
 
   _handleKeyCommand(command) {
@@ -102,7 +91,7 @@ export class BlogEdit extends React.Component {
 
     return (
       <div>
-        <form ref="blog" className="blog" onSubmit={ this.handleSubmit }>
+        <form ref="blog" name="blog" className="blog" onSubmit={ this.handleSubmit }>
           <FormGroup>
             <FormControl
               type="text"
@@ -139,9 +128,19 @@ export class BlogEdit extends React.Component {
 
         <hr/>
         
-        <Button bsStyle="success" onClick={ this.saveBlog }>Save Blog</Button>
+        <ButtonGroup>
+          <Button onClick={this._onStatusChange.bind(this, 'Draft')} active={this.state.status === 'Draft'}>Draft</Button>
+          <Button onClick={this._onStatusChange.bind(this, 'Active')} active={this.state.status === 'Active'}>Active</Button>
+          <Button onClick={this._onStatusChange.bind(this, 'Expired')} active={this.state.status === 'Expired'}>Expired</Button>
+        </ButtonGroup>
 
-        
+        <br/>
+
+        <Button ref="saveBlog" name="saveBlog" bsStyle="success" onClick={ this.saveBlog }>Save Blog</Button>
+
+        <br/>
+        <br/>
+        <br/>
       </div>
     );
   }
