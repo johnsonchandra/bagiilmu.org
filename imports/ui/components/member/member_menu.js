@@ -15,7 +15,7 @@ export class MemberMenu extends React.Component {
 		if(hasUser._id === memberId){
 			return(
 				<div>
-					{Roles.userIsInRole(Meteor.userId(),'akar','bagiilmu.org') ? <MemberMenuAdmin /> : <MemberMenuPrivate />}
+					{Roles.userIsInRole(Meteor.userId(),'Admin','bagiilmu.org') ? <MemberMenuAdmin /> : <MemberMenuPrivate />}
 					<MemberMenuCommon />
 				</div>
 			); 

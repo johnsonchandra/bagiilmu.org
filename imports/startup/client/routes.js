@@ -16,16 +16,20 @@ import { FaqWork } from '../../ui/pages/faq/faq_work';
 import { FaqHelp } from '../../ui/pages/faq/faq_help';
 import { FaqAbout } from '../../ui/pages/faq/faq_about';
 
+import { Candidates } from '../../ui/pages/candidate/candidates';
+import { Candidate } from '../../ui/pages/candidate/candidate';
+
 import { Organizations } from '../../ui/pages/organization/organizations';
 import { Organization } from '../../ui/pages/organization/organization';
 
-import { Members } from '../../ui/pages/member/members';
 import { Member } from '../../ui/pages/member/member';
 
 import { Blogs } from '../../ui/pages/blog/blogs';
 import { Blog } from '../../ui/pages/blog/blog';
 import { BlogForm } from '../../ui/pages/blog/blog_form';
 
+
+import { AdminMembers } from '../../ui/pages/admin/member/admin_members';
 
 const requireAuth = (nextState, replace) => {
   if (!Meteor.loggingIn() && !Meteor.userId()) {
@@ -51,7 +55,6 @@ Meteor.startup(() => {
         <Route name="reset-password" path="/reset-password/:token" component={ ResetPassword } />
         <Route name="signup" path="/signup" component={ Signup } />
                 
-        <Route name="members" path="/members" component={ Members } onEnter={ requireAuth }/>
         <Route name="member.detail" path="/member/detail/:memberId" component={ Member } onEnter={ requireAuth }/>
         
         <Route name="blogs" path="/blogs" component={ Blogs } />
@@ -63,8 +66,14 @@ Meteor.startup(() => {
         <Route name="faq.help" path="/faq/help" component={ FaqHelp } />
         <Route name="faq.about" path="/faq/about" component={ FaqAbout } />
         
+        <Route name="candidates" path="/candidates" component={ Candidates } />
+        <Route name="candidate.detail" path="/candidate/detail/:candidateId" component={ Candidate } />
+
         <Route name="organizations" path="/organizations" component={ Organizations } />
         <Route name="organization.detail" path="/organization/detail/:organizationId" component={ Organization } />
+
+
+        <Route name="admin.members" path="/admin/members" component={ AdminMembers } onEnter={ requireAuth }/>
 
         <Route path="*" component={ NotFound } />
       </Route>

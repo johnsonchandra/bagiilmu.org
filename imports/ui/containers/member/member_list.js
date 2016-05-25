@@ -4,12 +4,16 @@ import { MemberList } from '../../components/member/member_list.js';
 import { Loading } from '../../components/loading.js';
 import { Meteor } from 'meteor/meteor';
 
+import { goLink } from '../../../modules/utils';
+
 const composer = (params, onData) => {
-  const subscription = Meteor.subscribe('members');
-  if (subscription.ready()) {
-    const members = Member.find().fetch();
-    onData(null, { members });
-  }
+  if( Roles.userIsInRole(Meteor.userId(),'Admin','bagiilmu.org')){
+		const subscription = Meteor.subscribe('members');
+		if (subscription.ready()) {
+			const members = Member.find().fetch();
+			onData(null, { members });
+		}
+	}
 };
 
 export default composeWithTracker(composer, Loading)(MemberList);

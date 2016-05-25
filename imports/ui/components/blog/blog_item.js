@@ -6,7 +6,7 @@ export const BlogItem = ({ blogItem }) => (
   <ListGroupItem key={ blogItem._id }>
     <Row>
       <Col xs={ 8 } sm={ 10 }>
-        <Link to={ '/blog/detail/'+blogItem._id }>{ blogItem.title }</Link> by { blogItem.member().nickname }
+        <Link to={ '/blog/detail/'+blogItem._id }>{ blogItem.title }</Link> by { blogItem.owner().nickname }
       </Col>
     </Row>
   </ListGroupItem>

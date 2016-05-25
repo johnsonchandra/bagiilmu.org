@@ -1,11 +1,12 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 
-import { handleLogout } from '../../../modules/utils.js';
+import { goLink, handleLogout } from '../../../modules/utils.js';
 
 export const MemberMenuCommon = () => (
 	<div>
-		<p> ini menu common</p>
+		<Button bsStyle="primary" onClick={ goLink.bind(this, '/member/changePassword') }>Change Password</Button>
+		<Button bsStyle="primary" onClick={ goLink.bind(this, '/member/settings') }>Settings</Button>
 		<Button bsStyle="danger" onClick={ handleLogout } >Logout</Button>
 	</div>
 );

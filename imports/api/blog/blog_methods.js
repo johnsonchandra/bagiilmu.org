@@ -7,7 +7,9 @@ export const insertBlog = new ValidatedMethod({
   validate: new SimpleSchema({
     title: { type: String },
     article: { type: String },
-    status: { type: String },
+    status: { 
+      type          : String,
+      allowedValues : ["Draft", "Active", "Expired"] },
   }).validator(),
   run(blog) {
     return Blog.insert(blog);
@@ -20,14 +22,18 @@ export const updateBlog = new ValidatedMethod({
     _id: { 
       type: String,
       regEx: SimpleSchema.RegEx.Id },
-    'blog.title': { type: String },
-    'blog.article': { type: String },
-    'blog.status': { type: String },
+    'blog.title'    : { type: String },
+    'blog.article'  : { type: String },
+    'blog.status'   : { 
+      type          : String,
+      allowedValues : ["Draft", "Active", "Expired"] },
   }).validator(),
   run({ _id, blog }) {
     const blogToBeUpdated = Blog.findOne(_id);
 
-    if(blogToBeUpdated.userId !== this.userId)
+    // if(blogToBeUpdated.userId !== this.userId)
+    // if(!blogToBeUpdated.isThisUserMayEdit())
+    if(blogToBeUpdated.ownerId !== this.userId)
       throw new Meteor.Error(944, 'User is not the Owner');
     Blog.update(_id, { $set: blog });
   },
@@ -36,12 +42,14 @@ export const updateBlog = new ValidatedMethod({
 export const removeBlog = new ValidatedMethod({
   name: 'blog.remove',
   validate: new SimpleSchema({
-    _id: { type: String },
+    _id: { 
+      type: String,
+      regEx: SimpleSchema.RegEx.Id },
   }).validator(),
   run({ _id }) {
     const blogToBeUpdated = Blog.findOne(_id);
 
-    if(blogToBeUpdated.userId !== this.userId)
+    if(blogToBeUpdated.ownerId !== this.userId)
       throw new Meteor.Error(944, 'User is not the Owner');
     
     Blog.remove(_id);

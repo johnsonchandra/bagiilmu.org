@@ -8,8 +8,8 @@ export const CommonNavigation = () => (
 	        <NavItem eventKey={ 1 } href="/">Home</NavItem>
 	      </IndexLinkContainer>
 
-			<LinkContainer to="/partner">
-				<NavItem eventKey={ 2 } href="/partners">Partner</NavItem>
+			<LinkContainer to="/candidates">
+				<NavItem eventKey={ 2 } href="/candidates">Candidate</NavItem>
 			</LinkContainer>
 
 			<LinkContainer to="/organizations">
@@ -24,12 +24,8 @@ export const CommonNavigation = () => (
 				<NavItem eventKey={ 5 } href="/blogs">Blog</NavItem>
 			</LinkContainer>
 
-			<LinkContainer to="/members">
-				<NavItem eventKey={ 6 } href="/members">Member</NavItem>
-			</LinkContainer>
-
 			<LinkContainer to="/faq/about">
-				<NavItem eventKey={ 7 } href="/faq/about">About Us</NavItem>
+				<NavItem eventKey={ 6 } href="/faq/about">About Us</NavItem>
 			</LinkContainer>
 		</Nav>
 );

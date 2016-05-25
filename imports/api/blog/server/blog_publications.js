@@ -5,16 +5,17 @@ import { Member } from '../../member/member_collection.js';
 
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
-// Meteor.publish('blogs', () => {	
-// 	return Blog.find();
-// });
+Match._id = Match.Where(id => {
+  check(id, String);
+  return /^[a-zA-Z0-9]{17,17}/.test(id); 
+});
 
 Meteor.publish('blog.edit', function blogEdit(blogId) {
-  check(blogId, String);
+  check(blogId, Match._id);
 
   const blog = Blog.findOne(blogId);
 
-  if(blog && blog.editableBy(this.userId))
+  if(blog && blog.ownerId === this.userId)
     return Blog.find({_id:blogId});
   
   return this.ready();
@@ -22,12 +23,11 @@ Meteor.publish('blog.edit', function blogEdit(blogId) {
 
 Meteor.publishComposite('blog.active', function blogActive(blogId) {
 	
-  check(blogId, String);
+  check(blogId, Match._id);
 
   return {
     find() {
-    	console.log('blogId di server pub', blogId);
-
+    	
       const query = {
         _id: blogId,
         status: 'Active',
@@ -45,7 +45,7 @@ Meteor.publishComposite('blog.active', function blogActive(blogId) {
 
     children: [{
       find(blog) {
-        return Member.find({ _id: blog.userId }, { fields: Member.publicFields });
+        return Member.find({ _id: blog.ownerId }, { fields: Member.publicFields });
       },
     }],
   };
@@ -60,8 +60,6 @@ Meteor.publishComposite('blogs.active', function blogsActive() {
 
   return {
     find() {
-    	console.log('di dalam pub blogs.active');
-
       const query = {
         status: 'Active',
         // _id: listId,
@@ -79,7 +77,7 @@ Meteor.publishComposite('blogs.active', function blogsActive() {
 
     children: [{
       find(blog) {
-        return Member.find({ _id: blog.userId }, { fields: Member.publicFields });
+        return Member.find({ _id: blog.ownerId }, { fields: Member.publicFields });
       },
     }],
   };

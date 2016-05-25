@@ -24,3 +24,18 @@ Meteor.publish('members', () => {
 	//FIXME bikin limit buat infinite scrolling
 	return Member.find();
 });
+
+
+Meteor.publish('candidates', () => {	
+	return Member.find({role:'candidate'});
+});
+
+
+Meteor.publish('candidate', (candidateId) => {
+	check(candidateId, Match._id);
+	
+	return Member.find({
+		_id: candidateId,
+		role:'candidate'
+	});
+});

@@ -15,7 +15,7 @@ export const MemberItem = ({ member }) => (
       { member.fullname }
     </td>
     <td>
-      { member.bio }
+      { member.role }
     </td>
   </tr>
 );

@@ -7,34 +7,40 @@ import { Member } from '../member/member_collection.js';
 
 export const Blog = new Mongo.Collection('blog');
 
-const _BlogLogSchema = new SimpleSchema({
-	userId: {
-		type: SimpleSchema.RegEx.Id,
-	},
-	status: {
-		type: String,
-		label: 'Blog Status, Active means is on air',
- 		allowedValues   : ["Draft", "Active", "Expired"],
-	},
-	timestamp: {
-		type: Date,
-		autoValue : function(){
-			return new Date();
-		}
-	}
-});
+// const _BlogLogSchema = new SimpleSchema({
+// 	userId: {
+// 		type: SimpleSchema.RegEx.Id,
+// 	},
+// 	status: {
+// 		type: String,
+// 		label: 'Blog Status, Active means is on air',
+//  		allowedValues   : ["Draft", "Active", "Expired"],
+// 	},
+// 	timestamp: {
+// 		type: Date,
+// 		autoValue : function(){
+// 			return new Date();
+// 		}
+// 	}
+// });
 
 Blog.schema = new SimpleSchema({
-	userId: {
-		type: SimpleSchema.RegEx.Id,
-		label: 'userId of last Editor',
-		autoValue: function(){
-			return this.userId;
-		}
-	},
 	title: {
 		type: String,
 		label: 'Blog Title',
+	},
+	ownerId: {
+		type: SimpleSchema.RegEx.Id,
+		label: 'ownerId of this Account',
+		autoValue : function(){
+			if (this.isInsert) {
+				return this.userId;
+			} else if (this.isUpsert) {
+				return {$setOnInsert: new this.userId};
+			} else {
+				this.unset();
+			}
+		}
 	},
 	article: {
 		type: String,
@@ -59,24 +65,17 @@ Blog.schema = new SimpleSchema({
 Blog.attachSchema(Blog.schema);
 
 Blog.publicFields = {
-  _id 		: 1,
-  userId 	: 1,
+  _id 			: 1,
+  ownerId 	: 1,
   title 		: 1,
   article 	: 1,
-  status 	: 1,
+  status 		: 1,
   timestamp : 1,
 };
 
 Blog.helpers({
-	member() {
-		return Member.findOne(this.userId);
-	},
-	editableBy(userId) {
-		if (this.userId) {
-		   return this.userId === userId;
-		}else{
-			return false;
-		}
+	owner() {
+		return Member.findOne(this.ownerId);
 	},
 });
 

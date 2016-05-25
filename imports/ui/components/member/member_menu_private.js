@@ -1,11 +1,13 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 
-import { handleLogout } from '../../../modules/utils.js';
+import { goLink } from '../../../modules/utils.js';
 
 export const MemberMenuPrivate = () => (
 	<div>
-		<p> ini menu non admin</p>
-		<Button bsStyle="danger" onClick={ handleLogout } >Logout</Button>
+		<Button bsStyle="primary" onClick={ goLink.bind(this, '/member/following') }>Following</Button>
+		<Button bsStyle="primary" onClick={ goLink.bind(this, '/member/followers') }>Follower</Button>
+		<Button bsStyle="primary" onClick={ goLink.bind(this, '/member/accts') }>My Account</Button>
+		<Button bsStyle="primary" onClick={ goLink.bind(this, '/member/blogs') }>My Blog</Button>
 	</div>
 );

@@ -28,7 +28,7 @@ export const BlogDetail = ({ blog }) => {
 				<h2>{ blog.title }</h2>
 				<hr/>
 				<p>
-					Published on { publishedTimestamp } by <Link to={`/member/detail/${blog.userId}`}>{ blog.member().nickname }</Link>
+					Published on { publishedTimestamp } by <Link to={`/member/detail/${blog.ownerId}`}>{ blog.owner().nickname }</Link>
 				</p>
 				<hr/>
 				<Image alt="article" src="/images/900x300.png" responsive />

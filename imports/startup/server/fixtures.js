@@ -3,7 +3,8 @@ import { Roles } from 'meteor/alanning:roles';
 import { Accounts } from 'meteor/accounts-base';
 
 import { Member } from '../../api/member/member_collection.js';
-import { Blog } from '../../api/blog/blog_collection.js';
+import { Acct } from '../../api/acct/acct_collection.js';
+// import { Blog } from '../../api/blog/blog_collection.js';
 
 const users = [{
   username: 'jcha',
@@ -13,7 +14,7 @@ const users = [{
     fullname: 'Johnson Chandra',
   },
   bio: 'Catalyst',
-  roles: ['akar'],
+  roles: ['Akar', 'Admin'],
   group: Roles.GLOBAL_GROUP
 },{
   username: 'icha',
@@ -23,7 +24,7 @@ const users = [{
     fullname: 'Alyssa Prabandari',
   },
   bio: 'Designer',
-  roles: ['akar'],
+  roles: ['Admin'],
   group: 'bagiilmu.org'
 },{
   username: 'cindy',
@@ -33,17 +34,67 @@ const users = [{
     fullname: 'Cindy Riswantyo',
   },
   bio: 'Lawyer',
-  roles: ['akar'],
+  roles: ['Admin'],
   group: 'bagiilmu.org'
 },{
-  username: 'lidya',
-  email: 'lidya.clementina@bagiilmu.org',
+  username: 'joko',
+  email: 'dummy.joko@bagiilmu.org',
   password: 'password',
   profile: {
-    fullname: 'Lidya Clementina',
+    fullname: 'Joko Kandidat Pertama',
   },
-  bio: 'Marketing',
-  roles: ['akar'],
+  bio: 'Bio Joko Kandidat Pertama',
+  roles: ['Candidate'],
+  group: 'bagiilmu.org'
+},{
+  username: 'bunga',
+  email: 'dummy.bunga@bagiilmu.org',
+  password: 'password',
+  profile: {
+    fullname: 'Bunga Kandidat Kedua',
+  },
+  bio: 'bio Bunga Kandidat Kedua',
+  roles: ['Candidate'],
+  group: 'bagiilmu.org'
+},{
+  username: 'Mansur',
+  email: 'mansur@bagiilmu.org',
+  password: 'password',
+  profile: {
+    fullname: 'Mansur Scholar Pertama',
+  },
+  bio: 'Bio Mansur Scholar Pertama',
+  roles: ['Scholar'],
+  group: 'bagiilmu.org'
+},{
+  username: 'sity',
+  email: 'siti@bagiilmu.org',
+  password: 'password',
+  profile: {
+    fullname: 'Siti Scholar Kedua',
+  },
+  bio: 'Bio Siti Scholar Kedua',
+  roles: ['Scholar'],
+  group: 'bagiilmu.org'
+},{
+  username: 'herman',
+  email: 'herman@bagiilmu.org',
+  password: 'password',
+  profile: {
+    fullname: 'Herman Partner Pertama',
+  },
+  bio: 'Bio Herman Partner Pertama',
+  roles: ['Partner'],
+  group: 'bagiilmu.org'
+},{
+  username: 'dika',
+  email: 'dika@bagiilmu.org',
+  password: 'password',
+  profile: {
+    fullname: 'Dika Partner Kedua',
+  },
+  bio: 'Bio Dika Partner Kedua',
+  roles: ['Partner'],
   group: 'bagiilmu.org'
 }];
 
@@ -58,11 +109,13 @@ users.forEach(({ username, email, password, profile, bio, roles, group }) => {
       _id: userId,
       nickname: username,
       fullname: profile.fullname,
-      bio: bio
+      bio: bio,
+      role: roles[roles.length-1]
     });
 
   }
 });
+
 
 // const blogs = [{
 //   _id: 'blog1',

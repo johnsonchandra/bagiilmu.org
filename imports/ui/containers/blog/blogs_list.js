@@ -8,7 +8,7 @@ const composer = (params, onData) => {
   const subscription = Meteor.subscribe('blogs.active');
 
   if (subscription.ready()) {
-    const blogs = Blog.find().fetch();    
+    const blogs = Blog.find().fetch();
     onData(null, { blogs });
   }
 };

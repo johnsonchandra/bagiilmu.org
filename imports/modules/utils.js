@@ -14,3 +14,6 @@ export const resetInputValue = (component) => {
 };
 
 export const goSignup = () => browserHistory.push('/signup');
+
+export const goLink = (path) => browserHistory.push(path);
+
