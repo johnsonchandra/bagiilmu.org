@@ -2,8 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Organization } from '../organization_collection.js';
 
 Meteor.publish('organization', (organizationId) => {
-	console.log('organizationId yang server dapet', organizationId);
-	check(organizationId, String);
+	check(organizationId, Match._id);
 	
 	return Organization.find({_id:organizationId});
 });

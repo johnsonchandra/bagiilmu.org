@@ -8,6 +8,13 @@ import { Acct } from '../acct/acct_collection.js';
 
 export const AcctTrx = new Mongo.Collection('acctTrx');
 
+// Deny all client-side updates since we will be using methods to manage this collection
+AcctTrx.deny({
+  insert() { return true; },
+  update() { return true; },
+  remove() { return true; },
+});
+
 const _PartySchema = new SimpleSchema({
 	userId: {
 		type: SimpleSchema.RegEx.Id,

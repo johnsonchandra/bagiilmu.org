@@ -26,7 +26,7 @@ export const createMember = new ValidatedMethod({
       nickname: newUser.profile.fullname,
     });
     
-    Roles.addUsersToRoles(userId, ['member'], 'bagiilmu.org');
+    Roles.addUsersToRoles(userId, ['Member'], 'bagiilmu.org');
 
     return true;
   }

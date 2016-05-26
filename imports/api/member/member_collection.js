@@ -4,6 +4,7 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { Factory } from 'meteor/dburles:factory';
 
 import { Acct } from '../acct/acct_collection'
+import { Organization } from '../organization/organization_collection'
 
 class MemberCollection extends Mongo.Collection {
   insert(doc, callback) {
@@ -55,15 +56,24 @@ Member.schema = new SimpleSchema({
 		label: 'Member Short Biografy',
 		optional: true
 	},
-	role: {
+	imgUrl: {
 		type: String,
-		allowedValues   : ["Member", "Candidate", "Scholar", "Partner", "Admin"],
-		defaultValue    : "Member"
+		defaultValue: '/images/64x64.png'
 	},
-	orgId: {
+	organizationId: {
 		type: SimpleSchema.RegEx.Id,
 		optional: true
-	}
+	},
+	type: {
+		type: String,
+		allowedValues   : ["Member", "Scholar", "Partner", "Admin"],
+		defaultValue    : "Member"
+	},
+	status: {
+		type: String,
+		allowedValues   : ["Unverified", "Active", "Suspended"],
+		defaultValue    : "Unverified"
+	},
 });
 
 Member.attachSchema(Member.schema);
@@ -73,12 +83,17 @@ Member.publicFields = {
   fullname 	: 1,
   nickname 	: 1,
   bio 			: 1,
-  role 			: 1,
+  imgUrl 		: 1,
+  type 			: 1,
+  status 		: 1,
 };
 
 
-// Member.helpers({
-// 	org() {
-// 		return Organization.findOne(this.orgId);
-// 	},
-// });
+Member.helpers({
+	organization(){
+		return Organization.findOne(this.organizationId);
+	},
+	accts(){		
+		return Acct.find({ ownerId: this._id });
+	}
+});

@@ -19,4 +19,4 @@ import '../../api/acct/server/acct_publications.js';
 import '../../api/acctTrx/server/acctTrx_publications.js';
 // import '../../api/acctTrx/acctTrx_methods.js';
 
-import '../../api/venture/server/venture_publications.js';
+import '../../api/candidate/server/candidate_publications.js';

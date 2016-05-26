@@ -14,17 +14,17 @@ const userName = () => {
   return user && user.profile ? user.profile.fullname : '';
 };
 
-const memberLink = () => {
+const myDetailLink = () => {
   const user = Meteor.user();
-  return user ? '/member/detail/'+user._id : '';
+  return user ? '/my/detail' : '';
 };
 
 export const AuthenticatedNavigation = () => (
   <div onClick={ toggleNav }>
     <CommonNavigation />
     <Nav pullRight>
-      <LinkContainer to={ memberLink() }>
-        <NavItem eventKey={ 4 } href={ memberLink() }>{ userName() }</NavItem>
+      <LinkContainer to={ myDetailLink() }>
+        <NavItem eventKey={ 4 } href={ myDetailLink() }>{ userName() }</NavItem>
       </LinkContainer>
     </Nav>
   </div>

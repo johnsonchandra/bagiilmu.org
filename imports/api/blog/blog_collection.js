@@ -7,6 +7,13 @@ import { Member } from '../member/member_collection.js';
 
 export const Blog = new Mongo.Collection('blog');
 
+// Deny all client-side updates since we will be using methods to manage this collection
+Blog.deny({
+  insert() { return true; },
+  update() { return true; },
+  remove() { return true; },
+});
+
 // const _BlogLogSchema = new SimpleSchema({
 // 	userId: {
 // 		type: SimpleSchema.RegEx.Id,

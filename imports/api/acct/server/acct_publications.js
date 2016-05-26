@@ -5,10 +5,10 @@ import { Member } from '../../member/member_collection.js';
 
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
-Match._id = Match.Where(id => {
-  check(id, String);
-  return /^[a-zA-Z0-9]{17,17}/.test(id); 
-});
+// Match._id = Match.Where(id => {
+//   check(id, String);
+//   return /^[a-zA-Z0-9]{17,17}/.test(id); 
+// });
 
 // Meteor.publish('blog.edit', function blogEdit(blogId) {
 //   check(blogId, Match._id);

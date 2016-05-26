@@ -14,6 +14,15 @@ Acct.deny({
   remove() { return true; },
 });
 
+const _RefSchema = new SimpleSchema({
+	refId: {
+		type: SimpleSchema.RegEx.Id,
+	},
+	refType: {
+		type: String,
+	},
+});
+
 // const _LastLogSchema = new SimpleSchema({
 // 	userId: {
 // 		type: SimpleSchema.RegEx.Id,
@@ -110,6 +119,10 @@ Acct.schema = new SimpleSchema({
 		type: String,
 		defaultValue: 'IDR'
 	},
+	refs: {
+		type: [ _RefSchema ],
+		optional: true
+	},
 	status: {
 		type: String,
 		label: 'Acct Status, Active means is on air',
@@ -131,6 +144,7 @@ Acct.attachSchema(Acct.schema);
 Acct.publicFields = {
   _id 			: 1,
   name 			: 1,
+  ownerId 	: 1,
   saldo 		: 1,
   currency 	: 1,
   timestamp : 1,

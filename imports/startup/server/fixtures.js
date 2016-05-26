@@ -36,26 +36,26 @@ const users = [{
   bio: 'Lawyer',
   roles: ['Admin'],
   group: 'bagiilmu.org'
-},{
-  username: 'joko',
-  email: 'dummy.joko@bagiilmu.org',
-  password: 'password',
-  profile: {
-    fullname: 'Joko Kandidat Pertama',
-  },
-  bio: 'Bio Joko Kandidat Pertama',
-  roles: ['Candidate'],
-  group: 'bagiilmu.org'
-},{
-  username: 'bunga',
-  email: 'dummy.bunga@bagiilmu.org',
-  password: 'password',
-  profile: {
-    fullname: 'Bunga Kandidat Kedua',
-  },
-  bio: 'bio Bunga Kandidat Kedua',
-  roles: ['Candidate'],
-  group: 'bagiilmu.org'
+// },{
+//   username: 'joko',
+//   email: 'dummy.joko@bagiilmu.org',
+//   password: 'password',
+//   profile: {
+//     fullname: 'Joko Kandidat Pertama',
+//   },
+//   bio: 'Bio Joko Kandidat Pertama',
+//   roles: ['Candidate'],
+//   group: 'bagiilmu.org'
+// },{
+//   username: 'bunga',
+//   email: 'dummy.bunga@bagiilmu.org',
+//   password: 'password',
+//   profile: {
+//     fullname: 'Bunga Kandidat Kedua',
+//   },
+//   bio: 'bio Bunga Kandidat Kedua',
+//   roles: ['Candidate'],
+//   group: 'bagiilmu.org'
 },{
   username: 'Mansur',
   email: 'mansur@bagiilmu.org',
@@ -110,7 +110,8 @@ users.forEach(({ username, email, password, profile, bio, roles, group }) => {
       nickname: username,
       fullname: profile.fullname,
       bio: bio,
-      role: roles[roles.length-1]
+      type: roles[roles.length-1],
+      status: 'Active'
     });
 
   }
